@@ -59,17 +59,25 @@ class AppComponent {
         this.start = new Audio();
         this.started = false;
     }
-    play() {
-        if (this.started == false) {
-            this.start.src = 'assets/music/02 Gone Away.mp3';
-            this.start.play();
-            this.started = true;
-        }
-        else {
-            this.start.pause();
-            this.started = false;
-        }
-    }
+
+	play() {
+		if (this.started == false) {
+			this.start.src = 'assets/music/1.mp3';
+			this.start.play();
+			this.started = true;
+		} else {
+			this.start.pause();
+			this.started = false;
+		}
+		this.start.addEventListener('ended', this.next);
+	}
+
+	next() {
+		this.start.pause();
+		this.start.src = 'assets/music/02 Gone Away.mp3';
+		this.start.play();
+		console.log('ended');
+	}
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
 AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 11, vars: 1, consts: [[1, "background", 2, "background-image", "url(assets/images/510636.jpg)"], [1, "box"], [1, "freestyle"], [2, "margin", "0", "padding", "0", "text-align", "center"], [2, "width", "100%", "cursor", "pointer"], ["src", "assets/images/play.png", "alt", "", 2, "margin", "auto", "display", "flex", "border-radius", "50%", "border", "1px solid white", "padding", "5px", 3, "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
